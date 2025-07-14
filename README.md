@@ -6,7 +6,7 @@
 <a href="https://geometryforcing.github.io/">
 <img src='https://img.shields.io/badge/Project-Website-orange' alt='Project Page'></a>
 
-[Haoyu Wu](https://cintellifusion.github.io/)$^{1*}$, Diankun Wu$^{2*}$, Tianyu He$^{1†}$, Junliang Guo$^{1}$, Yang Ye$^{1}$, Yueqi Duan$^{2}$, Jiang Bian$^{1}$
+[Haoyu Wu](https://cintellifusion.github.io/)$^{1*}$, Diankun Wu $^{2*}$, Tianyu He $^{1†}$, Junliang Guo $^{1}$, Yang Ye $^{1}$, Yueqi Duan $^{2}$, Jiang Bian $^{1}$
 
 $^1$ Microsoft Research $^2$ Tsinghua University
 
