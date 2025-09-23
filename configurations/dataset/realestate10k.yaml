@@ -1,0 +1,22 @@
+# Important: Be careful when modifying this file! 
+# The fields in file will be overridden by the dataset dependent config file in the `configurations/dataset_experiment` folder so consider making changes there instead! 
+
+defaults:
+  - base_video
+
+save_dir: data/real-estate-10k
+external_cond_dim: 16
+max_frames: 16 # updated by haoyu for longer video
+frame_skip: 10
+context_length: 4
+resolution: 256
+data_mean: [[[0.577]], [[0.517]], [[0.461]]]
+data_std: [[[0.249]], [[0.249]], [[0.268]]]
+filter_min_len: null
+num_eval_videos: 100
+maximize_training_data: False
+augmentation:
+  frame_skip_increase: 0 # increase frame skip by this amount each subepoch
+  horizontal_flip_prob: 0.5 # probability of horizontally flipping the video
+  reverse_prob: 0 # probability of reversing the video
+  back_and_forth_prob: 0 # probability of playing the video back and forth

@@ -1,0 +1,54 @@
+# @package _global_
+# 12 x H100 GPUs
+
+# When the (dataset, experiment) pair aligns with the file name of this yaml, 
+# the values here will override individual yamls files for dataset, algorithm and experiment.
+# useful for dataset-specific overrides
+
+dataset:
+  latent:
+    enable: True
+  subdataset_size: 1920000
+  num_eval_videos: 768
+
+algorithm:
+  lr_scheduler:
+    name: constant_with_warmup
+    num_warmup_steps: 10000
+    num_training_steps: 200000
+  weight_decay: 0.001
+  compile: true_without_ddp_optimizer
+  diffusion:
+    loss_weighting:
+      strategy: sigmoid
+      sigmoid_bias: -1.0
+    training_schedule:
+      name: cosine
+      shift: 0.125
+    beta_schedule: cosine_simple_diffusion
+    schedule_fn_kwargs:
+      shifted: 0.125
+  uniform_future:
+    enabled: true
+  backbone:
+    patch_size: 2
+    external_cond_dropout: 0.1
+  vae:
+    pretrained_path: pretrained:ImageVAE_MCRAFT.ckpt
+    batch_size: 2
+  logging:
+    max_num_videos: 32
+
+experiment:
+  training:
+    lr: 1e-4
+    batch_size: 8
+    max_epochs: 10
+  validation:
+    batch_size: 16
+    data:
+      num_workers: 0
+  test:
+    batch_size: 16
+    data:
+      num_workers: 0

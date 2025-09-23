@@ -1,0 +1,12 @@
+name: u_net3d
+network_size: 48
+num_res_blocks: 2
+resnet_block_groups: 8
+dim_mults: [1, 2, 4, 8]
+attn_resolutions: [8, 16, 32, 64]
+attn_dim_head: 32
+attn_heads: 4
+use_linear_attn: True
+use_init_temporal_attn: True
+init_kernel_size: 7
+dropout: 0.0

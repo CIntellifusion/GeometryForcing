@@ -1,0 +1,11 @@
+# Important: Be careful when modifying this file! The fields in file will be overridden by the dataset dependent config file in the `configurations/dataset_experiment` folder so consider making changes there instead! 
+
+defaults:
+  - dfot_video
+  - override backbone: u_vit3d_pose
+  # - override backbone: u_vit3d_pose_controlnet
+
+camera_pose_conditioning:
+  normalize_by: first # first, mean
+  bound: null # float to scale the camera positions to [-bound, bound]^3
+  type: ray_encoding # global (flattened extrinsics), ray (per-pixel origin and direction), ray_encoding (ray mapped to high-dimensional space), plucker (ray in Plücker coordinates)

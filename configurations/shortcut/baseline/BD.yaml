@@ -1,0 +1,6 @@
+algorithm:
+  noise_level: random_uniform
+  variable_context:
+    enabled: true
+    prob: 0.5
+    dropout: 0.1

@@ -1,0 +1,18 @@
+# Important: Be careful when modifying this file! 
+# The fields in file will be overridden by the dataset dependent config file in the `configurations/dataset_experiment` folder so consider making changes there instead! 
+
+defaults:
+  - base_video
+
+latent:
+  suffix: 1cd9pgpb
+save_dir: data/minecraft
+max_frames: 50
+frame_skip: 2
+external_cond_stack: true
+external_cond_processing: mask_first
+context_length: 25
+resolution: 256
+data_mean: [[[0.557]], [[0.222]], [[0.416]], [[-0.847]]]
+data_std: [[[4.268]], [[4.953]], [[5.722]], [[7.336]]]
+external_cond_dim: 4

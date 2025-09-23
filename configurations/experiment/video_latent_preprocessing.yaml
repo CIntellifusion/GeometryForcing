@@ -1,0 +1,26 @@
+# Important: Be careful when modifying this file! 
+# The fields in file will be overridden by the dataset dependent config file in the `configurations/dataset_experiment` folder so consider making changes there instead! 
+
+
+defaults:
+  - base_pytorch_exp
+
+tasks: [validation]
+
+batch_size: 2
+
+training:
+  data:
+    shuffle: False
+  batch_size: ${experiment.batch_size}
+
+validation:
+  precision: 16-true
+  batch_size: ${experiment.batch_size}
+  data:
+    shuffle: False
+  dataset_splits: [training, validation] # dataset splits which will be encoded to latent space
+
+test:
+  batch_size: ${experiment.batch_size}
+

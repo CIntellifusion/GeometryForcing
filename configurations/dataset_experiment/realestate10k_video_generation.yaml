@@ -1,0 +1,60 @@
+# @package _global_
+# 12 x H100 GPUs
+
+# When the (dataset, experiment) pair aligns with the file name of this yaml, 
+# the values here will override individual yamls files for dataset, algorithm and experiment.
+# useful for dataset-specific overrides
+
+dataset:
+  subdataset_size: 2400000 
+  num_eval_videos: 100 
+  maximize_training_data: true
+  augmentation:
+    frame_skip_increase: 1
+    horizontal_flip_prob: 0.5
+    reverse_prob: 0.5
+    back_and_forth_prob: 0.1
+
+algorithm:
+  lr_scheduler:
+    name: constant_with_warmup
+    num_warmup_steps: 10000
+    num_training_steps: 550000
+  weight_decay: 0.01
+  compile: true_without_ddp_optimizer
+  diffusion:
+    loss_weighting:
+      strategy: sigmoid
+      sigmoid_bias: -1.0
+    training_schedule:
+      name: cosine
+      shift: 0.125
+    beta_schedule: cosine_simple_diffusion
+    schedule_fn_kwargs:
+      shifted: 0.125
+      interpolated: False
+  logging:
+    max_num_videos: 256
+    metrics: [fvd, is, fid, lpips, mse, ssim, psnr]
+  backbone:
+    channels: [128, 256, 576, 1152]
+    num_updown_blocks: [3, 3, 6]
+    num_mid_blocks: 20
+    num_heads: 9
+    use_checkpointing: [false, false, false, true]
+
+
+  
+experiment:
+  training:
+    lr: 8e-6
+    batch_size: 2
+    max_epochs: 26
+  validation:
+    batch_size: 8
+    data:
+      num_workers: 0
+  test:
+    batch_size: 4 
+    data:
+      num_workers: 0

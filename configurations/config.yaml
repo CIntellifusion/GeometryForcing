@@ -1,0 +1,17 @@
+# configuration parsing starts here
+defaults:
+  - experiment: video_generation # experiment yaml file name in configurations/experiments folder [fixme]
+  - dataset: kinetics_600 # dataset yaml file name in configurations/dataset folder [fixme]
+  - algorithm: dfot_video # algorithm yaml file name in configurations/algorithm folder [fixme]
+  - optional dataset_experiment: ${dataset}_${experiment} # optional yaml file in configurations/dataset_experiment folder, overrides algorithm and experiment configurations that are dataset and experiment dependent
+  - cluster: null # optional, cluster yaml file name in configurations/cluster folder. Leave null for local compute
+
+debug: false # global debug flag will be passed into configuration of experiment, dataset and algorithm
+
+wandb:
+  entity: replace_with_your_account # wandb account name / organization name [fixme]
+  project: dfot # wandb project name; if not provided, defaults to root folder name [fixme]
+  mode: offline  # set wandb logging to online, offline or dryrun
+
+resume: null # wandb run id to resume logging and loading checkpoint from
+load: null # wandb run id containing checkpoint or a path to a checkpoint file 

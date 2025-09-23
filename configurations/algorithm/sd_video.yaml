@@ -1,0 +1,15 @@
+# Important: Be careful when modifying this file! The fields in file will be overridden by the dataset dependent config file in the `configurations/dataset_experiment` folder so consider making changes there instead! 
+
+
+# Standard (explicitly conditional) video diffusion model
+defaults:
+  - dfot_video
+
+noise_level: random_uniform
+fixed_context:
+  enabled: true
+  dropout: 0.1
+
+diffusion:
+  loss_weighting:
+    strategy: min_snr

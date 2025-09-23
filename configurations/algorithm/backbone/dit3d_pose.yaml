@@ -1,0 +1,14 @@
+name: dit3d_pose
+variant: full
+pos_emb_type: rope_3d
+patch_size: 2
+hidden_size: 384
+depth: 12
+num_heads: 6
+mlp_ratio: 4.0
+use_gradient_checkpointing: False
+conditioning:
+  modeling: film # concat (concatenate conditioning to the video input across channels), film (FiLM conditioning)
+  type: ${algorithm.camera_pose_conditioning.type}
+  dim: null # this will be overwritten at dfot_video_pose.py
+external_cond_dropout: 0.1 # probability of dropping a camera pose of each video during training 

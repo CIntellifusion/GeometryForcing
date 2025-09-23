@@ -1,0 +1,6 @@
+algorithm:
+  diffusion:
+    is_continuous: true
+    precond_scale: 0.125 # following EDM
+  backbone:
+    use_fourier_noise_embedding: true

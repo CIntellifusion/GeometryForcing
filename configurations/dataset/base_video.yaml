@@ -1,0 +1,36 @@
+# Important: Be careful when modifying this file! 
+# The fields in file will be overridden by the dataset dependent config file in the `configurations/dataset_experiment` folder so consider making changes there instead! 
+
+defaults:
+  - base_dataset
+
+# Directory where the dataset is stored
+save_dir: ???
+# Mean & Std to be used for normalizing inputs to the model
+data_mean: "data/${dataset.name}/data_mean.npy"
+data_std: "data/${dataset.name}/data_std.npy"
+# Latent Configuration
+latent:
+  enable: False # Whether to use latents
+  type: pre_sample # Type of how latents are computed
+  # pre_sample: preprocess latents as samples, online: compute latents online (not saved)
+  suffix: null # latents are saved at ${save_dir}_${latent.suffix} folder
+  downsampling_factor: [1, 8] # [temporal, spatial] downsampling factor for latents
+  # (e.g. [4, 8] if 17x128x128 to 5x16x16)
+  num_channels: 4 # number of channels for the latent representation
+# Configuration for lengths and shapes
+resolution: 128 # Resolution of frames of videos in the dataset
+observation_shape: [3, "${dataset.resolution}", "${dataset.resolution}"]
+max_frames: 32 # Number of frames to be used for training
+n_frames: ${dataset.max_frames} # Number of frames to be used for generating videos
+context_length: 4 # Number of frames to be used as context
+frame_skip: 1 # Stride for sampling frames
+filter_min_len: null # Only for validatio. filters out validation videos shorter than this cfg. A null value defaults to self.n_frames, and filter by its value otherwise 
+# External conditioning configuration
+external_cond_dim: 0 # Dimension of external conditioning, 0 if no external conditioning
+external_cond_stack: false # Whether to stack external conditioning across skipped frames
+external_cond_processing: null # How to process external conditioning
+# Data loading configuration
+preload: false # Preload the dataset into CPU memory for faster data loading
+subdataset_size: null # A dataset is split into subdatasets of this size if not null
+num_eval_videos: null # Number of video clips to be used for evaluation, setting this ensures that evaluation clips are consistent across runs

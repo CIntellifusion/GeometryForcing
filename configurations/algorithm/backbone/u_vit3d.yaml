@@ -1,0 +1,11 @@
+name: u_vit3d
+channels: [128, 256, 512, 1024]
+emb_channels: 1024
+patch_size: 2
+block_types: ["ResBlock", "ResBlock", "TransformerBlock", "TransformerBlock"]
+block_dropouts: [0.0, 0.0, 0.1, 0.1]
+num_updown_blocks: [3, 3, 3]
+num_mid_blocks: 16
+num_heads: 4
+pos_emb_type: rope
+use_checkpointing: [false, false, false, false]

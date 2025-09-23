@@ -1,0 +1,23 @@
+# @package _global_
+
+# When the (dataset, experiment) pair aligns with the file name of this yaml, 
+# the values here will override individual yamls files for dataset, algorithm and experiment.
+# useful for dataset-specific overrides
+
+dataset:
+  latent:
+    enable: False
+  max_frames: 2
+  frame_skip: 150
+  context_length: 0
+  external_cond_dim: 0
+  
+experiment:
+  training:
+    batch_size: 12
+    data:
+      num_workers: 8
+  validation:
+    batch_size: 12
+    data:
+      num_workers: 8

@@ -1,0 +1,17 @@
+# @package _global_
+
+# When the (dataset, experiment) pair aligns with the file name of this yaml, 
+# the values here will override individual yamls files for dataset, algorithm and experiment.
+# useful for dataset-specific overrides
+
+dataset:
+  resolution: 256
+  latent:
+    suffix: 1cd9pgpb
+
+algorithm:
+  pretrained_path: pretrained:ImageVAE_MCRAFT.ckpt
+
+experiment:
+  batch_size: 2
+

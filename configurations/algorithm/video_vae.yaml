@@ -1,0 +1,40 @@
+defaults:
+  - base_pytorch_algo
+
+model:
+  hidden_size: 128
+  temporal_length: 17
+  z_channels: 8
+  hidden_size_mult: [1, 2, 4, 4]
+  attn_resolutions: []
+  dropout: 0.0
+  resolution: ${dataset.resolution}
+  embed_dim: ${algorithm.model.z_channels}
+  num_res_blocks: 2
+  is_causal: True
+  first_padding_mode: same
+
+loss:
+  disc_start: 60001
+  disc_weight: 0.5
+  kl_weight: 5e-6
+  perceptual_weight: 1.0
+  loss_type: l1
+
+training:
+  warmup_steps: 20000
+  gradient_clip_val: 1.0
+  optimizer_beta: [0.9, 0.99]
+  video_lengths: ["${algorithm.model.temporal_length}"]
+  video_length_probs: [1.0]
+
+validation:
+  video_lengths: ["${algorithm.model.temporal_length}"]
+
+logging:
+  metrics: [lpips, fid, fvd, is, mse, ssim, psnr]
+  loss_freq: 100
+  max_num_videos: 64
+
+
+  

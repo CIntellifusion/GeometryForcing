@@ -1,0 +1,24 @@
+name: u_vit3d_pose_controlnet
+train_base: false
+train_control: true 
+channels: [128, 256, 512, 1024]
+emb_channels: 1024
+patch_size: 2
+block_types: ["ResBlock", "ResBlock", "TransformerBlock", "TransformerBlock"]
+block_dropouts: [0.0, 0.0, 0.1, 0.1]
+num_updown_blocks: [3, 3, 3]
+num_mid_blocks: 16
+num_heads: 4
+pos_emb_type: rope
+use_checkpointing: [false, false, false, false]
+controlnet_use_checkpointing: [false, false, false, false]
+conditioning:
+  dim: null # this will be overwritten at dfot_video_3d.py
+external_cond_dropout: 0.1 # probability of dropping a camera pose of each video during training 
+additional_conditioning:
+  type: dummy 
+  shape: [1, 1, 1024] # [batch_size, num_frames, hidden_size]
+connector: 
+  hidden_dim: 256 # output resolution
+  num_layers: 3 
+  out_channel: 3 

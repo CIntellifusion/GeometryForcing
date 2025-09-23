@@ -1,0 +1,11 @@
+# Important: Be careful when modifying this file! 
+# The fields in file will be overridden by the dataset dependent config file in the `configurations/dataset_experiment` folder so consider making changes there instead! 
+
+defaults:
+  - realestate10k
+
+subdataset_size: 0 # dummy value
+num_eval_videos: 32
+rotation_angle:
+  min: 170
+  max: 180

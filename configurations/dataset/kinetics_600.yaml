@@ -1,0 +1,19 @@
+# Important: Be careful when modifying this file! 
+# The fields in file will be overridden by the dataset dependent config file in the `configurations/dataset_experiment` folder so consider making changes there instead! 
+
+defaults:
+  - base_video
+
+latent:
+  type: online
+  suffix: null
+  downsampling_factor: [4, 8]
+  num_channels: 16
+save_dir: data/kinetics-600
+max_frames: 17
+context_length: 5
+resolution: 128
+data_mean: [[[-0.284]], [[0.016]], [[-0.728]], [[-0.138]], [[0.941]], [[-2.504]], [[0.147]], [[-0.062]], [[0.833]], [[0.151]], [[-0.627]], [[0.269]], [[0.268]], [[-0.732]], [[-1.598]], [[0.199]]]
+data_std: [[[5.591]], [[5.257]], [[7.033]], [[6.401]], [[6.091]], [[11.233]], [[5.608]], [[7.5]], [[5.277]], [[5.46]], [[5.179]], [[6.8]], [[5.474]], [[5.111]], [[7.078]], [[5.024]]]
+filter_min_len: null
+video_preprocessing: mp4

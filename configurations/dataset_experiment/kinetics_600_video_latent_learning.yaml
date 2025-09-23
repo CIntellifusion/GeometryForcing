@@ -1,0 +1,56 @@
+# @package _global_
+# 4 x H100 GPUs
+
+# When the (dataset, experiment) pair aligns with the file name of this yaml, 
+# the values here will override individual yamls files for dataset, algorithm and experiment.
+# useful for dataset-specific overrides
+
+dataset:
+  max_frames: 4
+  context_length: 0
+  n_frames: 17
+  subdataset_size: 1280000
+  num_eval_videos: 6144
+algorithm:
+  loss:
+    disc_start: 80001
+  model:
+    hidden_size_mult: [1, 2, 2, 4]
+    temporal_length: 4
+    is_causal: False
+    z_channels: 16
+    first_padding_mode: zero
+  training:
+    video_lengths: [1, 4]
+    video_length_probs: [0.1, 0.9]
+  validation:
+    video_lengths: [1, 4, 17]
+  
+experiment:
+  ema:
+    enable: True
+    decay: 0.999
+  training:
+    max_steps: -1
+    max_epochs: 32
+    lr: 1e-4
+    batch_size: 16
+    checkpointing:
+      every_n_train_steps: null
+      every_n_epochs: 2
+    data:
+      num_workers: 11
+      shuffle: False
+  validation:
+    batch_size: 16
+    val_every_n_epoch: 1
+    val_every_n_step: 1.0
+    data:
+      num_workers: 1
+    limit_batch: 1.0
+  test:
+    batch_size: 16
+    data:
+      num_workers: 1
+    limit_batch: 1.0
+  reload_dataloaders_every_n_epochs: 1

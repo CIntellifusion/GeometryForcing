@@ -1,0 +1,11 @@
+defaults:
+  - base_pytorch_algo
+
+pretrained_path: null
+pretrained_kwargs: {}
+precision: ${experiment.validation.precision}
+latent_type: ${dataset.latent.type}
+max_encode_length: 700 # number of frames that can be passed through the encoder at once
+logging:
+  max_video_length: 300
+  every_n_batch: 500

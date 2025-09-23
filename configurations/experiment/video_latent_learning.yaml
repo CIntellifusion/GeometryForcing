@@ -1,0 +1,40 @@
+# Important: Be careful when modifying this file! 
+# The fields in file will be overridden by the dataset dependent config file in the `configurations/dataset_experiment` folder so consider making changes there instead! 
+
+
+defaults:
+  - base_pytorch_exp
+
+tasks: [training]
+
+# all steps will be halved due to GAN training
+# (two backward passes per step)
+# e.g. 100k steps = 50k steps
+# but validation.val_every_n_step counts normal steps (number of batches / gpu)
+
+training:
+  lr: 4e-4
+  precision: 16-mixed
+  batch_size: 8
+  max_epochs: -1
+  max_steps: 100000
+  checkpointing:
+    every_n_train_steps: 20000
+  optim:
+    gradient_clip_val: null # shouldn't be modified!
+
+validation:
+  val_every_n_step: 10000
+  val_every_n_epoch: null
+  batch_size: 8
+  limit_batch: 128
+
+test:
+  batch_size: 8
+  limit_batch: 128
+
+find_unused_parameters: True
+
+ema:
+  optimizer_indices: [0]
+  every_n_steps: 2

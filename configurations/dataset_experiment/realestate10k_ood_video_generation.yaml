@@ -1,0 +1,46 @@
+# @package _global_
+
+# When the (dataset, experiment) pair aligns with the file name of this yaml, 
+# the values here will override individual yamls files for dataset, algorithm and experiment.
+# useful for dataset-specific overrides
+
+algorithm:
+  lr_scheduler:
+    name: constant_with_warmup
+    num_warmup_steps: 10000
+    num_training_steps: 550000
+  weight_decay: 0.01
+  compile: true_without_ddp_optimizer
+  diffusion:
+    loss_weighting:
+      strategy: sigmoid
+      sigmoid_bias: -1.0
+    training_schedule:
+      name: cosine
+      shift: 0.125
+    beta_schedule: cosine_simple_diffusion
+    schedule_fn_kwargs:
+      shifted: 0.125
+      interpolated: False
+  logging:
+    max_num_videos: 256
+    metrics: [lpips, ssim, psnr]
+  backbone:
+    channels: [128, 256, 576, 1152]
+    num_updown_blocks: [3, 3, 6]
+    num_mid_blocks: 20
+    num_heads: 9
+    use_checkpointing: [false, false, false, true]
+
+
+  
+experiment:
+  tasks: [validation]
+  validation:
+    batch_size: 8
+    data:
+      num_workers: 0
+  test:
+    batch_size: 8
+    data:
+      num_workers: 0

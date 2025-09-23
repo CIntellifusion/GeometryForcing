@@ -1,0 +1,27 @@
+defaults:
+  - base_pytorch_algo
+
+# warmup_steps and disc_start will be halved due to GAN training
+
+warmup_steps: 10000
+gradient_clip_val: 1.0
+embed_dim: 4
+
+lossconfig:
+  disc_start: 40001
+  kl_weight: 0.000001
+  disc_weight: 0.5
+
+ddconfig:
+  double_z: true
+  z_channels: 4
+  resolution: ${dataset.resolution}
+  in_channels: 3
+  out_ch: 3
+  ch: 128
+  ch_mult: [1, 2, 4, 4]
+  num_res_blocks: 2
+  attn_resolutions: []
+  dropout: 0.0
+
+ckpt_path: null

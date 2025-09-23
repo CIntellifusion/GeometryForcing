@@ -1,0 +1,105 @@
+# Important: Be careful when modifying this file! The fields in file will be overridden by the dataset dependent config file in the `configurations/dataset_experiment` folder so consider making changes there instead! 
+
+
+defaults:
+  - base_pytorch_algo
+  - backbone: dit3d
+
+# dataset-dependent configurations
+x_shape: ${dataset.observation_shape}
+max_frames: ${dataset.max_frames}
+n_frames: ${dataset.n_frames}
+frame_skip: ${dataset.frame_skip}
+context_frames: ${dataset.context_length}
+latent: ${dataset.latent}
+data_mean: ${dataset.data_mean}
+data_std: ${dataset.data_std}
+external_cond_dim: ${dataset.external_cond_dim}
+external_cond_stack: ${dataset.external_cond_stack}
+external_cond_processing: ${dataset.external_cond_processing}
+# training hyperparameters
+compile: False
+weight_decay: 1e-3
+optimizer_beta: [0.9, 0.99]
+lr_scheduler:
+  name: constant_with_warmup
+  num_warmup_steps: 5000
+noise_level: random_independent
+uniform_future:
+  enabled: false
+fixed_context:
+  enabled: false
+  indices: null # defaults to context_frames
+  dropout: 0
+variable_context:
+  enabled: false
+  prob: 0
+  dropout: 0
+# sampling scheme
+chunk_size: -1
+scheduling_matrix: full_sequence
+replacement: noisy_scale
+
+diffusion:
+  is_continuous: False
+  timesteps: 1000
+  beta_schedule: cosine
+  schedule_fn_kwargs:
+    shift: 1.0
+  use_causal_mask: False
+  clip_noise: 20.0
+  # training
+  objective: pred_v
+  loss_weighting:
+    strategy: fused_min_snr
+    snr_clip: 5.0
+    cum_snr_decay: 0.9
+  # sampling
+  sampling_timesteps: 50
+  ddim_sampling_eta: 0.0
+  # (For full sequence diffusion)
+  reconstruction_guidance: 0.0
+
+# vae
+vae:
+  pretrained_path: null
+  pretrained_kwargs: {}
+  use_fp16: True
+  batch_size: 2
+
+checkpoint:
+  reset_optimizer: False
+  strict: True
+
+# video generation tasks
+tasks:
+  prediction:
+    enabled: True
+    history_guidance:
+      name: conditional
+    keyframe_density: null
+    sliding_context_len: null
+  interpolation:
+    enabled: False
+    history_guidance:
+      name: conditional
+    max_batch_size: null
+
+# logging
+logging:
+  deterministic: 0
+  loss_freq: 100
+  grad_norm_freq: 100
+  max_num_videos: 8
+  n_metrics_frames: null
+  metrics:
+    - fvd
+    - is
+    - fid
+    - lpips
+    - mse
+    - psnr
+    - ssim
+  metrics_batch_size: 16
+  sanity_generation: False # generate video samples during sanity check
+  raw_dir: null

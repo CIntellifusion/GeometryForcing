@@ -1,0 +1,34 @@
+dataset:
+  num_eval_videos: 4096
+  subdataset_size: 2560000
+
+algorithm:
+  backbone:
+    patch_size: 1
+    depth: 18
+    hidden_size: 896
+    num_heads: 14
+  chunk_size: -1
+  scheduling_matrix: full_sequence
+  
+experiment:
+  ema:
+    enable: True
+    decay: 0.9999
+  training:
+    max_steps: -1
+    max_epochs: 12
+    lr: 5e-5
+    batch_size: 16
+    checkpointing:
+      every_n_train_steps: null
+      every_n_epochs: 2
+    data:
+      shuffle: False
+  validation:
+    batch_size: 256
+    val_every_n_step: 1.0
+    val_every_n_epoch: 1
+  test:
+    batch_size: 256
+  reload_dataloaders_every_n_epochs: 1
