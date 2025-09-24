@@ -29,7 +29,7 @@ $^1$ Microsoft Research $^2$ Tsinghua University
 <!-- include asset/main.png -->
 
 # Overview 
-![](main.png)
+![](assets/main.png)
 **Geometry Forcing (GF) Overview.**
 (a) Our proposed GF paradigm enhances video diffusion models by aligning with geometric features from VGGT~\citep{wang2025vggt}. 
 (b) Compared to DFoT~\citep{dfot}, our method generates more temporally and geometrically consistent videos. 
