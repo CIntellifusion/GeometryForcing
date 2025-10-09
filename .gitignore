@@ -2,7 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-common_metrics_on_video_quality/
+
 # C extensions
 *.so
 examples 

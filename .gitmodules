@@ -1,0 +1,6 @@
+[submodule "evaluation/reprojection_error/third_party/DROID-SLAM"]
+	path = evaluation/reprojection_error/third_party/DROID-SLAM
+	url = https://github.com/princeton-vl/DROID-SLAM.git
+[submodule "evaluation/revisit_error/third_party/common_metrics_on_video_quality"]
+	path = evaluation/revisit_error/third_party/common_metrics_on_video_quality
+	url = git@wdk:JunyaoHu/common_metrics_on_video_quality.git
