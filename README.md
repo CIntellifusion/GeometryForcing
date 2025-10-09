@@ -82,8 +82,8 @@ bash scripts/train_geometry_forcing.sh
 To evaluate the reprojection error and revisit error, please follow the instructions in [README_EVAL.md](README_EVAL.md).
 
 
-## Citation
- 
+## 📜 Citation
+
 If you find our work useful for your research, please consider citing our paper:
 ```
 @article{wu2025geometryforcing,
