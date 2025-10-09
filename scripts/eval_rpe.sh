@@ -9,7 +9,7 @@ all_setting_names=(
     "GeometryForcingREPA"
 )
 all_gif_dirs=(
-    "wandb/GeometryForcingREPA/prediction_vis" # path to the wandb logged gifs directory
+    "output/evaluations/{put_your_run_name_here}/wandb/latest-run/files/media/videos/prediction_vis"
 )
 all_gpu_ids=(
     "0"

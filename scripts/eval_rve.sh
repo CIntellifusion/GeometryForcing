@@ -6,7 +6,7 @@ all_setting_names=(
     "GeometryForcingREPA"
 )
 all_gif_dirs=(
-    "evaluations/dfot-vggt-repa/wandb/latest-run/files/media/videos/prediction_vis"
+    "output/evaluations/{put_your_run_name_here}/wandb/latest-run/files/media/videos/prediction_vis"
 )
 
 for i in "${!all_setting_names[@]}"; do
@@ -27,6 +27,3 @@ for i in "${!all_setting_names[@]}"; do
         --gif_dir ${gif_dir} \
         > ${log_dir}/log.txt 2>&1
 done
-
-# Wait for all background processes to complete
-wait
