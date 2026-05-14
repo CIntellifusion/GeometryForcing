@@ -1,7 +1,13 @@
 from typing import Dict, List
 from torch import nn, Tensor
-from torchmetrics.image.lpip import NoTrainLpips
-from torchmetrics.image.fid import NoTrainInceptionV3
+try:
+    from torchmetrics.image.lpip import NoTrainLpips
+except ImportError:
+    from torchmetrics.image.lpip import _NoTrainLpips as NoTrainLpips
+try:
+    from torchmetrics.image.fid import NoTrainInceptionV3
+except ImportError:
+    from torchmetrics.image.fid import _NoTrainInceptionV3 as NoTrainInceptionV3
 from utils.torch_utils import freeze_model
 from utils.print_utils import suppress_warnings
 from .models import I3D, MotionExtractor, CLIP, DINO, LAION, MUSIQ, RAFT, AMT_S

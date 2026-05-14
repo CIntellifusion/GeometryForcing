@@ -21,13 +21,13 @@ internetarchive
 pytorchvideo
 scipy
 rotary_embedding_torch
-torchmetrics[image]==0.11.4
+torchmetrics[image]>=0.11.4
 # tfrecord[torch]
 # bezier
 timm
 zmq
 openai-clip
-pyiqa==0.1.10
+pyiqa>=0.1.10
 easydict
 zmq
 pytubefix

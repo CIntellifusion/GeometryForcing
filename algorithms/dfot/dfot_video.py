@@ -537,7 +537,7 @@ class DFoTVideo(BasePytorchAlgo):
             sliding_context_len=self.cfg.tasks.prediction.sliding_context_len
             or self.max_tokens // 2,
         )
-        xs_pred[:, keyframe_indices] = xs_pred_key
+        xs_pred[:, keyframe_indices] = xs_pred_key.clone()
         # if is_rank_zero: # uncomment to visualize history guidance
         #     history_guidance.log(logger=self.logger)
 
