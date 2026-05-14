@@ -3,7 +3,10 @@ from abc import ABC, abstractmethod
 import torch
 from torch import Tensor
 from torchmetrics import Metric
-from torchmetrics.image import FrechetInceptionDistance as _FrechetInceptionDistance
+try:
+    from torchmetrics.image import FrechetInceptionDistance as _FrechetInceptionDistance
+except ImportError:
+    from torchmetrics.image.fid import FrechetInceptionDistance as _FrechetInceptionDistance
 from .shared_registry import SharedVideoMetricModelRegistry
 
 
